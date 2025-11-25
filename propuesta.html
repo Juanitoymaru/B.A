@@ -12,6 +12,7 @@
             --yes-button: #4CAF50;       /* Verde para SI */
             --no-button: #F44336;        /* Rojo para NO */
             --disabled-button: #ccc;     /* Gris para botón desactivado */
+            --final-button-bg: #8a2be2;  /* Morado Vivo para el botón de regreso */
         }
 
         body {
@@ -49,7 +50,7 @@
             font-size: 2.5em;
             margin-bottom: 40px;
             font-weight: bold;
-            animation: pulse 1.5s infinite; /* Mantener la animación de latido */
+            animation: pulse 1.5s infinite; 
         }
 
         @keyframes pulse {
@@ -91,8 +92,8 @@
 
         #noBtn.hidden {
             opacity: 0;
-            pointer-events: none; /* Desactiva la interacción */
-            width: 0; /* Colapsa su espacio */
+            pointer-events: none;
+            width: 0;
             padding: 0;
             margin: 0;
             transition: all 0.5s ease;
@@ -103,6 +104,26 @@
             color: var(--primary-color);
             font-size: 1.3em;
             font-style: italic;
+        }
+
+        /* NUEVO ESTILO PARA EL BOTÓN DE REGRESO */
+        #returnButton {
+            background-color: var(--final-button-bg);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+            display: none; /* Inicialmente oculto */
+        }
+
+        #returnButton:hover {
+            transform: translateY(-3px);
+            background-color: #6a0dad; /* Morado Oscuro */
         }
     </style>
 </head>
@@ -124,6 +145,10 @@
         <div class="final-message" id="finalMessage">
             </div>
 
+        <a href="secretos.html" id="returnButton">
+            Ahora que eres mi novia, ve a tocar los corazones para que recuerdes lo mucho que te amo
+        </a>
+
     </div>
 
     <script>
@@ -131,22 +156,28 @@
         const noBtn = document.getElementById('noBtn');
         const finalMessageDiv = document.getElementById('finalMessage');
         const questionDiv = document.getElementById('question');
+        const initialMessageDiv = document.getElementById('initialMessage');
+        const returnButton = document.getElementById('returnButton'); // Referencia al nuevo botón
 
         yesBtn.addEventListener('click', function() {
-            // Mensaje para el "Sí"
+            // Mensaje de Aceptación
             finalMessageDiv.innerHTML = 'Gracias por aceptar preciosa, seré el mejor novio del mundo 💜';
-            // Oculta el botón "No" y desactiva el botón "Sí"
+            
+            // Oculta/Desactiva elementos
             noBtn.classList.add('hidden');
             yesBtn.style.pointerEvents = 'none';
             yesBtn.style.opacity = '0.7';
-            questionDiv.style.display = 'none'; // Oculta la pregunta
-            document.getElementById('initialMessage').style.display = 'none'; // Oculta la broma
-
+            questionDiv.style.display = 'none'; 
+            initialMessageDiv.style.display = 'none'; 
+            
+            // Muestra el botón de regreso
+            returnButton.style.display = 'inline-block';
         });
 
         noBtn.addEventListener('click', function() {
-            // Mensaje para el "No"
+            // Mensaje de Rechazo humorístico
             finalMessageDiv.textContent = 'Ups, respuesta incorrecta mi amor';
+            
             // Oculta solo el botón "No"
             noBtn.classList.add('hidden');
         });
