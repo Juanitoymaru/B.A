@@ -4,7 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Un Mensaje Especial para Ti ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Integrado (Paleta Morada Romántica) */
+        :root {
+            /* Paleta de colores morados */
+            --primary-color: #6a0dad; /* Morado Oscuro / Uva */
+            --secondary-color: #8a2be2; /* Azul Violeta / Amethyst */
+            --background-color: #f3e5f5; /* Lavanda Muy Claro */
+            --text-color: #333333;
+            --accent-color: #ff69b4; /* Tono de rosa para acentuar el romance */
+            --error-color: #dc3545;
+        }
+
+        body {
+            background-color: var(--background-color);
+            font-family: 'Georgia', serif; /* Tipografía más clásica y romántica */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        p {
+            color: var(--text-color);
+            margin-bottom: 25px;
+        }
+
+        input[type="text"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, 
+        input[type="password"]:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            margin-top: 15px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .error-message.visible {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
@@ -17,6 +104,35 @@
             <p id="errorMessage" class="error-message"></p>
         </form>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // JavaScript Integrado (Lógica de Validación)
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Detiene el envío del formulario por defecto
+
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Credenciales que solicitaste:
+            const correctUsername = 'amordemivida';
+            const correctPassword = '2014';
+
+            if (usernameInput === correctUsername && passwordInput === correctPassword) {
+                // Credenciales correctas: redirigir a la siguiente página
+                // **IMPORTANTE:** Crea este archivo (bienvenida.html) después.
+                window.location.href = 'bienvenida.html'; 
+            } else {
+                // Credenciales incorrectas: mostrar mensaje de error
+                errorMessage.textContent = 'Usuario o Contraseña incorrectos. ¡Solo la dueña de mi corazón puede entrar!';
+                errorMessage.classList.add('visible');
+                
+                // Ocultar el mensaje después de 3 segundos
+                setTimeout(() => {
+                    errorMessage.classList.remove('visible');
+                }, 3000);
+            }
+        });
+    </script>
 </body>
 </html>
