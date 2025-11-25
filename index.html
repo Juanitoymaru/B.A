@@ -3,165 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Amor</title>
-    <style>
-        /* Paleta Morada y Estética Romántica */
-        :root {
-            --morado-oscuro: #5D3FD3; /* Morado Profundo para texto/bordes */
-            --morado-claro: #E0B0FF;  /* Lavanda/Lila para acentos */
-            --fondo-claro: #F5EEF8;   /* Fondo muy suave */
-            --sombra: rgba(93, 63, 211, 0.3);
-        }
+    <title>Página Única Completa</title>
 
+    <style>
         body {
-            font-family: 'Georgia', serif; /* Fuente romántica */
-            background-color: var(--fondo-claro);
-            color: var(--morado-oscuro);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
             text-align: center;
         }
 
-        #login-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px var(--sombra);
-            width: 90%;
-            max-width: 400px;
-            border: 2px solid var(--morado-claro);
-            transition: all 0.5s ease-in-out;
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
         }
 
         h1 {
-            color: var(--morado-oscuro);
-            font-size: 2.2em;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-
-        .input-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: var(--morado-oscuro);
-        }
-
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--morado-claro);
-            border-radius: 10px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: var(--morado-oscuro);
-            outline: none;
-            box-shadow: 0 0 5px var(--morado-claro);
+            color: #007bff;
         }
 
         button {
-            background-color: var(--morado-oscuro);
+            background-color: #007bff;
             color: white;
-            padding: 12px 25px;
             border: none;
-            border-radius: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
             cursor: pointer;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.1s;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #4B2AAB; /* Un morado más oscuro al pasar el ratón */
-            transform: translateY(-2px);
-        }
-
-        #error-message {
-            color: red;
-            margin-top: 15px;
-            display: none; /* Oculto por defecto */
-        }
-
-        /* Contenedor del contenido secreto, oculto al inicio */
-        #content-area {
-            display: none; 
-            padding: 20px;
-            animation: fadeIn 1s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
 
-    <div id="login-container">
-        <h1>¡Bienvenida, Amor de mi Vida!</h1>
-        <p>Por favor, ingresa el código secreto para continuar:</p>
-
-        <form id="login-form">
-            <div class="input-group">
-                <label for="username">Usuario:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            
-            <button type="submit">¿Segura de entrar😏?</button>
-            
-            <p id="error-message">❌ Error. Inténtalo de nuevo, ¡la clave es especial!</p>
-        </form>
+    <div class="container">
+        <h1>¡Hola Mundo! 👋</h1>
+        <p id="mensaje">Este es el texto inicial de mi párrafo. Haz clic en el botón.</p>
+        <button id="miBoton">Haz Clic Aquí</button>
     </div>
 
-    <div id="content-area">
-        <h2 style="color: var(--morado-oscuro);">¡Acceso Concedido!</h2>
-        <p>¡Hola, mi cielo! Ya puedes empezar a crear la siguiente sección conmigo.</p>
-        </div>
-
-
     <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita que el formulario se envíe de forma tradicional
-
-            const correctUser = 'amordemivida';
-            const correctPass = '2014';
-
-            const enteredUser = document.getElementById('username').value.trim();
-            const enteredPass = document.getElementById('password').value.trim();
+        // Función que se ejecuta cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Obtener los elementos por su ID
+            const boton = document.getElementById('miBoton');
+            const parrafo = document.getElementById('mensaje');
             
-            const errorMsg = document.getElementById('error-message');
-            const loginBox = document.getElementById('login-container');
-            const contentArea = document.getElementById('content-area');
-
-            if (enteredUser === correctUser && enteredPass === correctPass) {
-                // Credenciales correctas
-                errorMsg.style.display = 'none';
-                loginBox.style.display = 'none'; 
-                contentArea.style.display = 'block'; // Muestra el contenido secreto
-                
-                // Opcional: Podrías redirigir a otra página (por ejemplo, 'carta.html') en lugar de mostrarlo aquí mismo.
-                // window.location.href = 'carta.html'; 
-            } else {
-                // Credenciales incorrectas
-                errorMsg.style.display = 'block'; // Muestra el mensaje de error
+            // 2. Definir la función que cambiará el texto
+            function cambiarMensaje() {
+                parrafo.textContent = '¡El texto ha sido cambiado por JavaScript! 🚀';
+                parrafo.style.color = 'green';
+                parrafo.style.fontWeight = 'bold';
+                boton.textContent = '¡Gracias por el clic!';
             }
+            
+            // 3. Asignar la función al evento 'click' del botón
+            boton.addEventListener('click', cambiarMensaje);
+
+            console.log("¡La página y el script están listos!");
         });
     </script>
-
 </body>
 </html>
