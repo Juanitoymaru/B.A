@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Te Amo! | Nuestro Rincón</title>
+    <style>
+        /* Estilos Integrados (Paleta Morada y Rosa para la Carta) */
+        :root {
+            --background-color: #f3e5f5; /* Fondo Lavanda Muy Claro */
+            --primary-color: #6a0dad;    /* Morado Oscuro */
+            --secondary-color: #8a2be2;  /* Morado Vivo */
+            --letter-bg: #ffebee;        /* Rosa Suave/Pálido para el fondo de la carta */
+            --heart-color: #e91e63;      /* Rosa Intenso para el corazón interactivo */
+            --envelope-color: #b39ddb;   /* Morado Suave para el sobre */
+            --text-on-heart: white;      /* Color del texto "Tocame" */
+        }
+
+        body {
+            background-color: var(--background-color);
+            font-family: 'Georgia', serif; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+        }
+
+        /* ---------------------------------- */
+        /* ESTILOS DEL SOBRE CERRADO */
+        /* ---------------------------------- */
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Altura inicial del sobre */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope-container {
+            background-color: var(--envelope-color);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease-in-out;
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden; /* Para que el corazón no se salga antes de abrir */
+        }
+
+        /* ---------------------------------- */
+        /* ESTILOS DEL CORAZÓN INTERACTIVO */
+        /* ----------------------------------
