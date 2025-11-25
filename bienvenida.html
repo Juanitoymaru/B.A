@@ -67,4 +67,210 @@
 
         /* ---------------------------------- */
         /* ESTILOS DEL CORAZÓN INTERACTIVO */
-        /* ----------------------------------
+        /* ---------------------------------- */
+        .interactive-heart {
+            background-color: var(--heart-color);
+            width: 150px;
+            height: 130px;
+            position: relative;
+            transform: rotate(-45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px; /* Para darle forma de corazón más cuadrada al principio */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 2; /* Asegura que esté por encima del sobre */
+            opacity: 1; /* Visible inicialmente */
+        }
+
+        .interactive-heart::before,
+        .interactive-heart::after {
+            content: '';
+            width: 150px;
+            height: 130px;
+            position: absolute;
+            background-color: var(--heart-color);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .interactive-heart::before {
+            top: -65px; /* Ajusta para la parte superior del corazón */
+            left: 0;
+        }
+
+        .interactive-heart::after {
+            left: 65px; /* Ajusta para la parte derecha del corazón */
+            top: 0;
+            transform: rotate(90deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart-text {
+            position: absolute;
+            transform: rotate(45deg); /* Contrarresta la rotación del corazón */
+            font-size: 1.5em;
+            color: var(--text-on-heart);
+            z-index: 3; /* Para que el texto esté encima del corazón */
+            font-weight: bold;
+        }
+
+        .interactive-heart:hover {
+            transform: rotate(-45deg) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        /* ---------------------------------- */
+        /* ESTILOS DE LA CARTA ABIERTA */
+        /* ---------------------------------- */
+        .love-letter {
+            background-color: var(--letter-bg);
+            border-radius: 10px;
+            padding: 30px 25px;
+            text-align: left;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0; /* Inicialmente invisible */
+            transform: scale(0.8); /* Inicialmente encogida */
+            transition: opacity 0.5s ease, transform 0.5s ease, z-index 0s 0.5s;
+            box-sizing: border-box;
+            color: var(--primary-color); /* Color del texto de la carta */
+            z-index: 1; /* Detrás del corazón al principio */
+            overflow-y: auto; /* Para que la carta sea scrollable si es larga */
+        }
+
+        /* Clase aplicada por JavaScript al tocar */
+        .envelope-container.open .love-letter {
+            opacity: 1;
+            transform: scale(1); /* Se expande */
+            z-index: 4; /* Delante del sobre y corazón */
+            transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s; /* Retraso para que el corazón se oculte primero */
+        }
+
+        .envelope-container.open .interactive-heart {
+            opacity: 0; /* Oculta el corazón */
+            transform: scale(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        /* Estilos del contenido de la carta */
+        .love-letter h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+
+        .love-letter p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-style: italic;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .heart-icon { /* Usado para los corazones decorativos dentro de la carta */
+            color: var(--heart-color);
+            font-size: 1.5em;
+            margin: 0 5px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Media queries para responsividad */
+        @media (max-width: 600px) {
+            .envelope-container {
+                padding: 30px 15px;
+                min-height: 250px;
+            }
+            .love-letter {
+                padding: 20px 15px;
+            }
+            .love-letter h1 {
+                font-size: 1.8em;
+            }
+            .love-letter p {
+                font-size: 1em;
+            }
+            .interactive-heart {
+                width: 120px;
+                height: 100px;
+            }
+            .interactive-heart::before,
+            .interactive-heart::after {
+                width: 120px;
+                height: 100px;
+            }
+            .interactive-heart::before {
+                top: -50px;
+            }
+            .interactive-heart::after {
+                left: 50px;
+            }
+            .heart-text {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope-container" id="envelope">
+                <div class="interactive-heart" id="interactiveHeart">
+                    <span class="heart-text">Tocame😏​</span>
+                </div>
+                
+                <div class="love-letter" id="letter-content">
+                    <h1><span class="heart-icon">💜</span> ¡Bienvenida, Amor de mi Vida! <span class="heart-icon">💜</span></h1>
+                    
+                    <p>
+                        Si estás leyendo esto, significa que recordaste nuestra clave secreta. Eso demuestra que lo nuestro no es casualidad, sino un destino que hemos estado construyendo desde el primer día.
+                    </p>
+                    
+                    <p>
+                        Este pequeño rincón en internet lo he creado solo para ti. Es un recordatorio de que, no importa dónde estemos o qué tan ocupados estemos, siempre habrá un espacio tranquilo, hermoso y privado que es **solo nuestro**.
+                    </p>
+
+                    <p>
+                        Cada color morado aquí representa la fantasía, la magia y la profundidad de lo que siento por ti. Y ese año que usaste como clave... ese fue el año en que todo cambió. El comienzo de la mejor historia que he vivido.
+                    </p>
+                    
+                    <p>
+                        Quiero que sepas que me inspiras a ser una mejor persona cada día y que te amo más de lo que las palabras pueden expresar. Gracias por ser mi compañera.
+                    </p>
+
+                    <div class="signature">
+                        Con todo mi amor,<br>
+                        Tu Novio (Tu Nombre Aquí) <span class="heart-icon">💖</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para abrir el sobre al hacer clic en el corazón
+        document.getElementById('interactiveHeart').addEventListener('click', function() {
+            document.getElementById('envelope').classList.add('open');
+            // Opcional: Deshabilitar el cursor del corazón después de abrir
+            this.style.cursor = 'default';
+        });
+    </script>
+</body>
+</html>
